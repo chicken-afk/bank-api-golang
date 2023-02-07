@@ -41,18 +41,18 @@ func (store *Store) execTx(ctx context.Context, fn func(*Queries) error) error {
 
 //TransferTx Pramaeters
 type TransferTxParams struct {
-	FromAccountId int64 `json:"from_account_id`
-	ToAccountId   int64 `json:"to_account_id`
-	Amount        int64 `json:"amount`
+	FromAccountId int64 `json:"from_account_id"`
+	ToAccountId   int64 `json:"to_account_id"`
+	Amount        int64 `json:"amount"`
 }
 
 //TransferTxResults is the result of the transfer transaction
 type TransferTxResult struct {
-	Transfer    Transfer `json:"transfer`
+	Transfer    Transfer `json:"transfer"`
 	FromAccount Account  `json:"from_account"`
 	ToAccount   Account  `json:"to_account"`
 	FromEntry   Entry    `json:"from_entry"`
-	ToEntry     Entry    `json:"to_entry`
+	ToEntry     Entry    `json:"to_entry"`
 }
 
 // TransferTx performs a money transfer from one account to the other

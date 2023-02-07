@@ -20,10 +20,12 @@ func TestCreateEntry(t *testing.T) {
 }
 
 func TestGetEntry(t *testing.T) {
-	entry, err := testQueries.GetEntry(context.Background(), 3)
+	entry, err := testQueries.GetEntry(context.Background(), GetEntryParams{
+		Limit:     1,
+		AccountID: 12,
+	})
 	require.NotEmpty(t, entry)
 	require.NoError(t, err)
-	require.EqualValues(t, entry.ID, 3)
 }
 
 func TestListEntries(t *testing.T) {

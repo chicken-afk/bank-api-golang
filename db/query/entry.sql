@@ -6,9 +6,11 @@ INSERT INTO entries (
   $1, $2
 ) RETURNING *;
 
--- name: GetEntry :one
+-- name: GetEntry :many
 SELECT * FROM entries
-WHERE id = $1 LIMIT 1;
+WHERE account_id = $1
+ORDER BY id DESC
+LIMIT $2;
 
 -- name: ListEntries :many
 SELECT * FROM entries
