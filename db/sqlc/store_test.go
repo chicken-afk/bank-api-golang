@@ -38,7 +38,7 @@ func TestTransferTx(t *testing.T) {
 		require.NoError(t, err)
 
 		result := <-results
-		require.NotEmpty(t, results)
+		require.NotEmpty(t, result)
 
 		//Check transfer
 		transfer := result.Transfer
@@ -59,7 +59,10 @@ func TestTransferTx(t *testing.T) {
 		require.Equal(t, -amount, FromEntry.Amount)
 		require.NotZero(t, FromEntry.ID)
 		require.NotZero(t, FromEntry.CreatedAt)
-		_, err = store.GetEntry(context.Background(), FromEntry.AccountID)
+		_, err = store.GetEntry(context.Background(), GetEntryParams{
+			Limit:     1,
+			AccountID: FromEntry.AccountID,
+		})
 		require.NoError(t, err)
 
 		toEntry := result.ToEntry
@@ -68,7 +71,10 @@ func TestTransferTx(t *testing.T) {
 		require.Equal(t, amount, toEntry.Amount)
 		require.NotZero(t, toEntry.ID)
 		require.NotZero(t, toEntry.CreatedAt)
-		_, err = store.GetEntry(context.Background(), toEntry.AccountID)
+		_, err = store.GetEntry(context.Background(), GetEntryParams{
+			Limit:     1,
+			AccountID: toEntry.AccountID,
+		})
 		require.NoError(t, err)
 
 		//Check update balance
