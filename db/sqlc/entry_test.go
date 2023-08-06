@@ -29,9 +29,10 @@ func TestGetEntry(t *testing.T) {
 }
 
 func TestListEntries(t *testing.T) {
+	account := createRandomAccount(t)
 	for i := 0; i < 5; i++ {
 		argCreate := CreateEntryParams{
-			AccountID: 22,
+			AccountID: account.ID,
 			Amount:    100000,
 		}
 		entry, err := testQueries.CreateEntry(context.Background(), argCreate)
@@ -39,7 +40,7 @@ func TestListEntries(t *testing.T) {
 		require.NotEmpty(t, entry)
 	}
 	params := ListEntriesParams{
-		AccountID: 22,
+		AccountID: account.ID,
 		Limit:     5,
 		Offset:    0,
 	}
