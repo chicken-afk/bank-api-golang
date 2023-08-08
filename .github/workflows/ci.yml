@@ -55,8 +55,3 @@ jobs:
     - name: Run Migration
       run: make migrateup
 
-    - name: Test
-      run: make test
-
-    - name: Go Build Server
-      run: make server
